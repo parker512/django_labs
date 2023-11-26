@@ -1,3 +1,4 @@
+.idea
 .venv
 *.pyc
 mysite/db.sqlite3
