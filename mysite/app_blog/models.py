@@ -21,7 +21,7 @@ class Article(models.Model):
     description = models.TextField(blank=True, verbose_name='Опис')
     pub_date = models.DateTimeField('Дата публікації', default=timezone.now)
     slug = models.SlugField('Слаг', unique_for_date='pub_date')
-    main_page = models.BooleanField('Головна', default=False, help_text='Показувати')
+    main_page = models.BooleanField('Головна', default=False, help_text='Показувати на головній сторінці')
     category = models.ForeignKey(Category, related_name='news', blank=True, null=True, verbose_name='Категорія',
                                  on_delete=models.CASCADE)
     objects = models.Manager()
