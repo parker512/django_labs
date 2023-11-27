@@ -1,6 +1,7 @@
 from django.urls import path
-from app_blog import views
+from .views import HomePageView, ArticleList
 
 urlpatterns = [
-        path(r'', views.HomePageView.as_view()),
+        path(r'', HomePageView.as_view()),
+        path(r'articles', ArticleList.as_view(), name='articles-list')
 ]
