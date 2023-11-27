@@ -7,8 +7,9 @@ from .forms import ArticleImageForm
 # Register your models here.
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category',)
-    fields = ('category',)
+    list_display = ('category','slug')
+    fields = ('category', 'slug')
+    prepopulated_fields = {'slug': ('category',)}
 
 
 admin.site.register(Category, CategoryAdmin)
