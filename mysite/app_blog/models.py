@@ -19,7 +19,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         try:
-            url = reverse('articles - category - list', kwargs={'slug': self.slug})
+            url = reverse('articles-category-list', kwargs={'slug': self.slug})
         except:
             url = "/"
         return url
