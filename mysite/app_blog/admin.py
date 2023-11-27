@@ -8,11 +8,7 @@ from .forms import ArticleImageForm
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('category',)
-    fields = (
-        ('', {
-            'fields': ('category',),
-        }),
-    )
+    fields = ('category',)
 
 
 admin.site.register(Category, CategoryAdmin)
@@ -37,18 +33,19 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     raw_id_fields = ('category',)
     fieldsets = (
-        ('', {
+        (None, {
             'fields': ('pub_date', 'title', 'description', 'main_page'),
         }),
-        (('Додатково'), {
+        (('Додатково',), {
             'classes': ('grp-collapse grp-closed',),
-            'fields': ('slug'),
+            'fields': ('slug',),
         }),
     )
 
-    def delete_file(self,pk,request):
+    def delete_file(self, pk, request):
         '''Delete an image'''
         obj = get_object_or_404(ArticleImage, pk=pk)
         return obj.delete()
+
 
 admin.site.register(Article, ArticleAdmin)
