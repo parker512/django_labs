@@ -1,29 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block content %}
-{% spaceless %}
+    {% spaceless %}
+        <div class="container mt-4">
+            <h1 class="text-center mb-4">Публікації</h1>
+            <a href="{% url 'home' %}" class="d-block mb-3">На головну</a>
+            {% if category %}
+                <div class="mb-3">{{ category }}</div>
+            {% endif %}
 
-<h1>Публікації</h1>
-<br/>
-<a href="{% url 'home' %}">На головну</a> <br/>
-{% if category %} {{ category }} {% endif %}
-{% for item in items %}
-<div class="articles-row">
-<a href="{{ item.get_absolute_url }}">
-<h4>{{ item.title }}</h4>
-</a>
-<h5>
-{{ item.pub_date|date:"j E Y"|safe|linebreaks }}
-</h5>
-<p>
-{{ item.description|safe|escape|striptags|truncatewords_html:32 }}
-</p>
-<div class="container-image">
-<img class="img" src="{{ item.images.all.0.image.url }}" alt="" />
-</div>
-<div class=‘clearfix’></div>
-</div>
-{% endfor %}
-
-{% endspaceless %}
+            {% for item in items %}
+                <div class="card mb-4">
+                    <div class="card-body bg-light">
+                        <a href="{{ item.get_absolute_url }}">
+                            <h4 class="card-title">{{ item.title }}</h4>
+                        </a>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            {{ item.pub_date|date:"j E Y"|safe }}
+                        </h6>
+                        <p class="card-text">
+                            {{ item.description|safe|truncatewords_html:32 }}
+                        </p>
+                        <div class="text-center mb-3">
+                            <img src="{{ item.images.all.0.image.url }}" class="img-fluid" alt="" />
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endspaceless %}
 {% endblock %}
