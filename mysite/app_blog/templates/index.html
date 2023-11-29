@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang=”uk”>
-<head>
-<title>Blog</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-</head>
-<body>
-Категорії
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% spaceless %}
+
+<h2>Категорії</h2>
 {% if categories %}
 {% for item in categories %}
 <div>
@@ -33,5 +31,5 @@
 <a href="{% url 'articles-list' %}">
 <h4>Всі публікації</h4>
 </a>
-</body>
-</html>
+{% endspaceless %}
+{% endblock %}
